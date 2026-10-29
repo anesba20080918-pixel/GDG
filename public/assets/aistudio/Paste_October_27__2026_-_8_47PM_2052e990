@@ -1,0 +1,614 @@
+# Build a Complete GDG Ghardaïa Community Web Application
+
+Act as a senior full-stack engineer, UI/UX designer, Firebase architect, accessibility specialist, and application security engineer.
+
+Build a complete, functional, responsive web application for **GDG Ghardaïa**, the Google Developer Group community in Ghardaïa, Algeria. The application must serve the community throughout the year and include a dedicated **DevFest Ghardaïa 2026** section.
+
+This is a real application project, not a static prototype, landing-page mockup, or collection of nonfunctional screens.
+
+Do not stop after generating the homepage. Implement the complete application, including its public interface, administrative dashboard, database integration, authentication, permissions, registration workflow, content management, and testing support.
+
+## 1. Mandatory project rules
+
+- Use the official GDG Ghardaïa and university logos and the provided brand reference images as visual references.
+- Never invent, redraw inaccurately, or replace official logos with AI-generated approximations.
+- If an official logo is embedded in a reference board and no clean asset is available, ask for the original logo file rather than pretending that a mockup is the original logo.
+- Do not invent event dates, speakers, biographies, locations, official links, registration URLs, or confirmed activities.
+- Treat organizer-provided, verified information as the source of truth.
+- If event details conflict or are missing, make them editable through the admin dashboard and mark them as unverified until confirmed.
+- Do not display fictional content as real. Clearly label any development-only sample data.
+- All buttons, forms, filters, links, and administrative actions must work as intended.
+- Never display a success message before the backend confirms the operation.
+- Never claim that a feature, security rule, scheduled task, notification, or backup is working unless it has actually been implemented and tested.
+- Do not expose private keys, service-account credentials, or privileged server secrets in frontend code.
+- Do not activate paid services or incur costs without explicit approval from the project owner.
+
+## 2. Technology and architecture
+
+Build a responsive web application using:
+
+- React with TypeScript.
+- A maintainable component-based architecture.
+- Firebase Authentication for authorized organizer sign-in.
+- Cloud Firestore for structured application data.
+- Firebase Security Rules for database access control.
+- Firebase Storage for approved images and uploaded assets, if required.
+- Firebase Cloud Messaging for optional notifications, where supported and correctly configured.
+- Cloud Functions or an equivalent trusted server-side environment for sensitive operations that cannot safely be performed by the client.
+- Firebase Hosting for deployment, starting with an available free hosting option.
+
+Use a clear separation between the public application and the protected administration dashboard. They may share the same project and design system but must have separate routes and enforce separate permissions.
+
+Suggested routes:
+
+- `/` — Home
+- `/events` — Events
+- `/events/:id` — Event details
+- `/devfest-2026` — DevFest 2026
+- `/resources` — Learning resources
+- `/resources/:id` — Resource details
+- `/favorites` — Saved items
+- `/community` — Official links and community
+- `/about` — About GDG Ghardaïa
+- `/settings` — Language, theme, and preferences
+- `/admin/login` — Organizer login
+- `/admin` — Protected dashboard
+- `/admin/content` — Content management
+- `/admin/events` — Event management
+- `/admin/registrations` — Registration management
+- `/admin/feedback` — Beta feedback and bug reports
+- `/admin/team` — Organizer accounts and roles, restricted to Super Admin
+- `/admin/audit` — Permission-controlled audit log
+
+Adapt the route structure if necessary, but preserve all required functionality.
+
+## 3. Brand identity and design system
+
+Use the provided GDG Ghardaïa and DevFest 2026 reference images.
+
+Brand requirements:
+
+- Preserve the official GDG identity and logo proportions.
+- Use Google's familiar brand palette as accents:
+  - Blue: `#4285F4`
+  - Red: `#EA4335`
+  - Yellow: `#FBBC05`
+  - Green: `#34A853`
+- Use a clean, readable sans-serif typography system. Use Google Sans only where legally and technically available; otherwise use a suitable fallback.
+- Incorporate restrained geometric patterns inspired by the architecture of Ghardaïa and the M'zab Valley.
+- Provide both light and dark themes.
+- Support mobile, tablet, and desktop layouts.
+- Keep spacing, typography, cards, buttons, and iconography consistent.
+- Avoid excessive neon, unnecessary 3D effects, crowded layouts, and decorative animations that interfere with usability.
+- Use subtle transitions and accessible motion preferences.
+- Optimize images and lazy-load nonessential media.
+- Provide accessible contrast, visible keyboard focus, descriptive labels, and appropriate alternative text.
+- Do not use the complete branding board as a single background image for the application. Build actual UI components and use individual approved assets where available.
+
+Create reusable design tokens for colors, spacing, typography, radii, and shadows.
+
+## 4. Languages and localization
+
+Support three languages:
+
+1. Arabic
+2. French
+3. English
+
+Requirements:
+
+- Detect the device/browser language when the app is first opened.
+- If the detected language is unsupported, default to English.
+- Allow users to change language manually.
+- Remember the user's selected language locally.
+- Support correct right-to-left layout for Arabic and left-to-right layouts for French and English.
+- Translate navigation, forms, validation messages, settings, notifications, administrative controls, and empty/error states.
+- Store multilingual content properly. Do not translate official speaker names, titles, or event details inaccurately.
+- If a translation is unavailable, use an explicit fallback rather than rendering broken or empty UI.
+
+## 5. Public application features
+
+### Home
+
+Provide:
+
+- GDG Ghardaïa identity and a concise introduction.
+- Upcoming events and announcements.
+- A DevFest 2026 featured section.
+- Recently published learning resources.
+- Official community links.
+- Search and navigation shortcuts.
+- Clear loading, empty, offline, and error states.
+
+Only display verified published content.
+
+### Events
+
+Implement:
+
+- Event list and event detail pages.
+- Filtering by relevant event attributes.
+- Event date, location, description, agenda, and registration details when verified.
+- External Google Maps links for locations when available.
+- Share actions using supported native sharing or copy-link functionality.
+- Past-event archives rather than deleting old events.
+
+### DevFest Ghardaïa 2026
+
+Build a dedicated section supporting the full event lifecycle.
+
+Before the event:
+- Countdown when a verified event date is configured.
+- Event description.
+- Registration form.
+- Approved speaker profiles.
+- Agenda and location.
+
+During the event:
+- Updated agenda.
+- Published announcements.
+- Activity and schedule updates.
+
+After the event:
+- Recap and approved photographs.
+- Published learning resources.
+- Results or certificates only if the organizers provide and verify them.
+- Archive the event for future reference.
+
+Never invent a countdown date or show an unverified schedule as confirmed.
+
+### Learning resources
+
+Implement:
+
+- Resource listing and detail views.
+- Search by title and description.
+- Categories based on field or topic, not learning level.
+- Resource title, summary, category, language, source, thumbnail, and external URL where available.
+- Favorites and sharing.
+- Manual submission by authorized organizers.
+- Review and approval before publication.
+- Validation of external URLs and clear indication when a resource opens another website.
+
+### Favorites
+
+Allow public users to save and remove events and resources without creating an account.
+
+Persist favorites locally on the user's device. Handle unavailable storage gracefully.
+
+### Community and official links
+
+Create a page for official social media, community channels, website, contact information, joining information, and other verified links.
+
+All links must be editable through the admin dashboard. Do not hardcode guessed URLs.
+
+Open external links safely and make it clear when users are leaving the application.
+
+### Search and sharing
+
+Implement functional search across published events, announcements, speakers, and learning resources.
+
+Provide useful empty states and allow users to share supported items or copy their URLs.
+
+## 6. Notifications
+
+Implement optional notifications with topic subscriptions:
+
+- News
+- Events
+- Workshops
+- Important announcements
+
+Requirements:
+
+- Let users select their preferred topics before requesting notification permission.
+- Request browser notification permission only when the user explicitly chooses to subscribe.
+- Do not repeatedly prompt users who decline permission.
+- Store subscription preferences and tokens securely.
+- Allow users to change topics or unsubscribe.
+- Target notifications according to topic preferences.
+- Avoid sending duplicate notifications.
+- Handle unsupported browsers and denied permissions gracefully.
+- Require the necessary Firebase configuration before claiming notifications work.
+- Do not enable notifications automatically for all visitors.
+
+## 7. Registration system
+
+Participants must not need an application account to register.
+
+Required fields:
+
+- Full name
+- Email address
+- University or institution
+- Specialization
+
+Requirements:
+
+- One registration per normalized email address per event.
+- No arbitrary registration cap.
+- No external Google Form.
+- No email confirmation workflow.
+- Show an in-app confirmation only after the server confirms successful registration.
+- Prevent duplicate registrations using trusted server-side logic and appropriate database constraints or transaction-based enforcement.
+- Validate input on both client and server.
+- Normalize email addresses consistently.
+- Apply sensible rate limiting and anti-spam protection.
+- Use CAPTCHA or another suitable challenge when suspicious behavior requires it.
+- Never expose registration lists or personal data to public visitors.
+- Require a mandatory privacy-consent checkbox before submission.
+- Link to a clear privacy notice describing collected data, purpose, access, and retention.
+- Do not collect unnecessary personal information.
+
+Registration management:
+
+- Authorized Registration Managers and Super Admins can search and view registrations.
+- Registration details can be changed by an authorized organizer only after identity verification.
+- Support CSV export for authorized roles only.
+- Record sensitive operations in the audit log.
+- Protect exports against unauthorized access and accidental exposure.
+- Do not track actual attendance.
+- Do not implement QR check-in.
+
+### Data retention
+
+Registration data must be scheduled for deletion 180 days after the associated event ends.
+
+Implement this using trusted server-side scheduled logic where supported.
+
+Requirements:
+
+- Use a verified event end date.
+- Do not delete data if the event end date is missing or unverified.
+- Log deletion outcomes without unnecessarily retaining deleted personal information.
+- Provide observable failure reporting and a way for an authorized administrator to verify execution.
+- Account for backups and logs so personal data is not retained unnecessarily beyond the intended retention period.
+- Test deletion using disposable test records before production use.
+
+If automatic deletion requires a paid Firebase plan, do not activate it without approval. Explain the limitation and provide a safe, documented alternative for the project owner to approve.
+
+## 8. Admin dashboard and permissions
+
+Create a separate, protected admin interface with responsive layouts.
+
+### Super Admin
+
+May:
+
+- Manage authorized organizer accounts and roles.
+- Create, edit, review, publish, and archive content.
+- Manage events, speakers, resources, translations, and official links.
+- View and manage registrations.
+- Edit participant registration details after identity verification.
+- Export registration data.
+- Review audit records within the role's permitted scope.
+- Manage beta feedback and bug reports.
+- Approve production readiness and initiate the release process.
+
+Require two-step verification for the Super Admin's Google account where available.
+
+### Editor
+
+May:
+
+- Create and edit content.
+- Submit content for review.
+- View content review status.
+- Publish urgent announcements directly, with mandatory audit logging.
+
+Must not access participant registration data or registration exports.
+
+### Registration Manager
+
+May:
+
+- View and search registrations.
+- Update registration details after identity verification.
+- Export registration data to CSV.
+- View audit records relevant to permitted registration operations.
+
+Must not manage organizer roles or publish general content unless separately authorized.
+
+### Security enforcement
+
+- Use individual Google accounts for organizers.
+- Only allow explicitly authorized accounts.
+- Do not use a shared team password.
+- Restrict account and role management to Super Admin.
+- Remove access promptly when an organizer leaves the team.
+- Enforce every permission in trusted backend logic and Firebase Security Rules.
+- Never rely only on hiding buttons or routes in the UI.
+- Deny access by default.
+- Protect against unauthorized document reads, writes, exports, role escalation, and direct API requests.
+- Verify the caller's identity and role on sensitive operations.
+- Never place privileged service-account credentials in the browser.
+
+If an authorization check fails, deny the action and show an appropriate error.
+
+## 9. Content management and review workflow
+
+Support these content types:
+
+- Events
+- Announcements
+- Speakers
+- Learning resources
+- Official links
+- Translations
+
+Use these states:
+
+- `draft`
+- `pending_review`
+- `published`
+
+Requirements:
+
+- Only published and approved content is publicly visible.
+- Editors can create and edit drafts and submit them for review.
+- The publication workflow must be explicit.
+- Urgent announcement publication is allowed for authorized Editors but must record the actor, timestamp, and content change in the audit log.
+- Archive past events instead of deleting them.
+- Validate required fields and URLs before publication.
+- Store publication and modification timestamps.
+- Preserve enough revision information to support review and accountability.
+
+## 10. Beta feedback and bug reports
+
+Create a private page in the admin dashboard for beta testing feedback.
+
+Support:
+
+- Bug reports.
+- Improvement suggestions.
+- Affected page or feature.
+- Description and reproduction steps.
+- Optional screenshot or attachment.
+- Priority: critical, high, normal, low.
+- Status: new, in progress, awaiting retest, closed.
+- Assigned team member.
+- Resolution notes.
+- Retest confirmation before closing a bug.
+
+Only authorized organizers should access the feedback dashboard according to their permissions.
+
+Do not allow uploaded files to execute. Validate file type and size, and protect private attachments from public access.
+
+## 11. Audit logging
+
+Record relevant security and administrative actions, including:
+
+- Successful and failed login attempts.
+- Content creation, editing, publication, approval, and archival.
+- Role and access changes.
+- Registration viewing, editing, export, and deletion.
+- Urgent announcement publication.
+- Beta issue status changes.
+- Relevant security failures.
+
+Each record should include an actor identifier, timestamp, action type, target identifier where appropriate, and a minimal change summary.
+
+Requirements:
+
+- Never log passwords, authentication secrets, or sensitive tokens.
+- Avoid unnecessarily copying personal registration data into logs.
+- Prevent normal users and Editors from modifying or deleting audit records.
+- Restrict log visibility according to role.
+- Use trusted server-side timestamps and logic.
+- Make important operations traceable.
+
+## 12. Database design
+
+Create a documented Firestore schema with appropriate access rules.
+
+Suggested collections:
+
+- `events`
+- `announcements`
+- `speakers`
+- `resources`
+- `social_links`
+- `registrations`
+- `admin_users`
+- `translations`
+- `feedback`
+- `audit_logs`
+- `notification_topics` or an equivalent secure subscription model
+
+Adapt this schema when justified, but maintain clear relationships between events, speakers, registrations, resources, and administrative actions.
+
+For every collection, define:
+
+- Document structure and required fields.
+- Data types and validation.
+- Read and write permissions.
+- Required indexes.
+- Public versus private fields.
+- Retention and deletion behavior.
+
+Do not allow public visitors to query private collections.
+
+Do not assume client-side validation is sufficient.
+
+## 13. Offline support and performance
+
+Implement practical offline support:
+
+- Cache appropriate published content where supported.
+- Display the latest cached content when offline.
+- Keep favorites available locally.
+- Clearly indicate when data may be stale.
+- Display useful network error messages.
+- Retry safe read operations appropriately.
+
+Do not pretend that a registration was submitted while offline.
+
+Do not implement silent offline registration queues unless duplicate prevention, consent, security, and server reconciliation are properly designed and tested.
+
+Optimize for typical mobile connections, minimize unnecessary network requests, and provide loading skeletons or clear loading indicators.
+
+## 14. Privacy, security, and resilience
+
+- Create a privacy notice suitable for organizer review before launch.
+- Apply data minimization and least-privilege access.
+- Validate all input on trusted server-side operations.
+- Protect against common web vulnerabilities.
+- Use safe rendering and avoid injecting untrusted HTML.
+- Configure Firebase Security Rules explicitly.
+- Use Firebase App Check where appropriate and supported.
+- Handle expired sessions and authentication failures.
+- Protect sensitive operations against abuse.
+- Provide useful error messages without exposing internal details.
+- Ensure failures do not leave the UI in a false success state.
+- Avoid logging or exposing personal data unnecessarily.
+
+Do not claim legal compliance automatically. Mark the privacy notice and any legal text as requiring review by the responsible team before launch.
+
+## 15. Free-tier and cost policy
+
+The project must remain free to operate as far as reasonably possible during development and beta testing.
+
+- Prefer Firebase Spark and Firebase Hosting free allowances where sufficient.
+- Do not activate paid services without explicit project-owner approval.
+- Do not add a billing account or upgrade the plan automatically.
+- Verify which features are available on the selected Firebase plan.
+- Scheduled Firestore backups, scheduled backend jobs, and some other functions may require a paid plan or additional configuration.
+- If a requirement cannot be implemented safely on the free tier, document the limitation and propose a free alternative or defer the feature for approval.
+- Do not silently remove security, retention, or backup requirements just to stay free.
+- Do not promise unlimited free hosting, database usage, storage, or notifications.
+- Document expected usage limits and possible costs before production deployment.
+
+Start with a free Firebase Hosting domain ending in `web.app`. Defer a custom domain until after the beta and approval by the team.
+
+Use a suitable Firebase region for the project only after confirming the team's requirements and regional service availability. Explain that a Firestore database's location cannot simply be changed after creation.
+
+## 16. Backup and recovery
+
+The intended policy is daily automated backups, a defined retention period, and periodic restoration tests.
+
+Before implementation:
+
+- Verify the chosen backup feature, plan requirements, costs, retention limits, and restoration process.
+- Do not claim daily backups are configured until the actual project confirms it.
+- Do not enable a paid backup feature without approval.
+- If automated backups are unavailable on the approved free plan, explain the limitation and provide a documented alternative for team approval.
+- Define recovery responsibilities and a procedure for checking whether a backup can actually be restored.
+
+## 17. Testing requirements
+
+Create and execute a practical test plan.
+
+### Registration tests
+
+- Valid registration succeeds.
+- Duplicate email for the same event is rejected.
+- Invalid email and missing required fields are rejected.
+- Missing privacy consent is rejected.
+- Server failure does not show a success message.
+- Concurrent duplicate requests cannot create duplicate registrations.
+- Unauthorized visitors cannot read registrations.
+- Editors cannot access registrations.
+- Authorized CSV export works and unauthorized export is denied.
+
+### Permission tests
+
+Test each role against direct backend requests, not only the UI.
+
+Verify that:
+
+- Public visitors cannot access admin data.
+- Editors cannot view or export registrations.
+- Registration Managers cannot change roles.
+- Only Super Admin can manage organizer permissions.
+- Unauthorized direct reads and writes are denied.
+
+### Content tests
+
+- Draft and pending-review content remain private.
+- Approved published content becomes visible.
+- Urgent announcement publication is logged.
+- Translations and RTL layouts work.
+- Archived events remain accessible in the archive.
+
+### Privacy and retention tests
+
+- Consent is required.
+- Registration data is protected.
+- The deletion schedule uses the verified event end date.
+- Test records are deleted when due.
+- Failed scheduled deletion is detectable.
+- Backup and log retention are documented.
+
+### UX and resilience tests
+
+- Test mobile, tablet, and desktop.
+- Test Arabic, French, and English.
+- Test light and dark themes.
+- Test offline cached data.
+- Test unavailable network and backend errors.
+- Test search, favorites, maps, sharing, and notification preferences.
+- Verify all visible buttons and forms work.
+
+Fix critical failures before considering the application ready for beta.
+
+## 18. Deployment and release process
+
+Use this staged release plan:
+
+1. Build the application and connect Firebase only after the project owner authorizes the configuration.
+2. Verify database structure, authentication, security rules, and backend operations.
+3. Run the tests and fix critical issues.
+4. Deploy a private beta for organizers and a small group of invited users. Do not publicly announce it.
+5. Collect bug reports through the admin feedback page.
+6. Fix and retest reported issues.
+7. Review security, privacy, backup and cost limitations.
+8. Obtain approval from the responsible team.
+9. The Super Admin makes the final public-release decision.
+10. Publish the application and monitor errors after launch.
+
+If a security issue, registration failure, privacy problem, or authorization defect remains unresolved, postpone public release.
+
+## 19. Implementation instructions
+
+Work systematically, but deliver the full application rather than only a plan.
+
+First inspect the available project environment and determine which Firebase integrations and services are actually configured.
+
+Then:
+
+1. Build the shared design system and public application.
+2. Build the protected admin dashboard.
+3. Implement database models and authentication.
+4. Implement server-side registration and role enforcement.
+5. Implement content review, feedback, audit logging, and retention logic.
+6. Implement language switching, RTL, theme switching, search, favorites, maps, offline behavior, and notifications.
+7. Add loading, empty, error, and success states.
+8. Create and run tests.
+9. Fix detected issues.
+10. Document the remaining manual setup and deployment steps.
+
+Do not replace real backend functionality with hardcoded mock arrays or simulated success messages.
+
+If Firebase credentials, project IDs, indexes, rules, billing approval, notification credentials, or other configuration are missing, clearly identify the exact missing requirement. Never invent credentials.
+
+If a feature cannot be fully completed in the current environment, implement the safe parts, document the remaining work, and do not falsely mark it complete.
+
+## 20. Final deliverables
+
+Provide:
+
+- Complete source code for the responsive web application.
+- Public interface and protected admin dashboard.
+- Database schema and Firebase Security Rules.
+- Required server-side functions and scheduled tasks, where supported.
+- Environment/configuration instructions.
+- Setup and deployment guide.
+- Privacy-notice draft for team review.
+- Test plan and test results.
+- Clear list of implemented features, unimplemented features, and manual setup still required.
+- Cost and free-tier limitations.
+- Beta-release checklist.
+
+**Final acceptance criterion:** the result must be a coherent, maintainable, secure, multilingual GDG Ghardaïa web application with real functionality—not merely a visually convincing demo.
+
+Start implementing the application now. Do not invent official information, do not enable paid services without approval, and report any genuine technical limitation honestly.

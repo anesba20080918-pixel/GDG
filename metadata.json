@@ -1,0 +1,6 @@
+{
+  "name": "GDG Ghardaïa",
+  "description": "Official community app for GDG Ghardaïa and DevFest Ghardaïa 2026",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

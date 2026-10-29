@@ -1,0 +1,714 @@
+# MASTER PROMPT — GDG GHARDAÏA DEVFEST 2026 APP
+## Full Project Audit, Refactoring, Visual Redesign, Features, Accurate Countdown, and Testing
+
+## 1. Main Objective
+
+Upgrade and refactor the existing GDG Ghardaïa / DevFest Ghardaïa 2026 application inside the current project.
+
+Create a modern, elegant, lightweight, responsive, interactive application that represents the Google Developer Groups community, presents verified event information, organizes official links, and offers useful educational features.
+
+The application must have:
+- A modern and elegant visual identity inspired by Google's colors.
+- A polished GDG Ghardaïa app logo or logo treatment.
+- Subtle live animations and smooth transitions.
+- Consistent, professional icons without unnecessary decorative labels.
+- Accurate event information and a mathematically correct countdown.
+- Arabic, French, and English language support.
+- Responsive layouts for mobile, tablet, and desktop.
+- Useful offline access to basic information where technically supported.
+- Functional navigation, buttons, and interactive components.
+- A clear separation between existing functionality, working features, and future integrations.
+
+### Mandatory project preservation rules
+
+Before changing the project:
+1. Inspect the existing source code, file structure, dependencies, assets, configuration, integrations, and existing functionality.
+2. Identify which files and components are useful and should be preserved.
+3. Reuse existing components and settings where appropriate.
+4. Do not create a separate project from scratch.
+5. Do not mass-delete files or replace the entire architecture without understanding it.
+6. Remove existing features only after confirming that they are unnecessary and safe to remove.
+7. Do not overwrite valuable assets, settings, or working features without a clear reason.
+8. Do not claim successful implementation, testing, deployment, or external integration unless it actually occurred.
+
+Work incrementally and preserve the current project's integrity.
+
+---
+
+## 2. Visual Identity and Design System
+
+Create a contemporary, elegant design inspired by Google and the GDG community.
+
+### 2.1 Google color palette
+
+Use these Google colors:
+
+- Google Blue: `#4285F4`
+- Google Red: `#EA4335`
+- Google Yellow: `#FBBC05`
+- Google Green: `#34A853`
+
+Use the colors selectively for:
+- Primary and secondary actions.
+- Important highlights.
+- Navigation states.
+- Cards and visual accents.
+- Small illustrations and interface details.
+- The countdown and interactive elements.
+
+Combine them with neutral backgrounds, readable typography, balanced whitespace, and consistent contrast.
+
+Do not make every element colorful simultaneously. Avoid excessive gradients, neon effects, and visual clutter.
+
+### 2.2 Modern logo design
+
+Create or refine an elegant visual identity for the GDG Ghardaïa application.
+
+Requirements:
+- Reflect the Google/GDG identity.
+- Optionally incorporate a subtle visual reference to Ghardaïa or the M'zab Valley.
+- Keep the mark simple, balanced, recognizable, and suitable for an app icon.
+- Ensure it works at small sizes, in the application header, and on a splash screen.
+- Inspect existing logo assets before creating replacements.
+- Preserve the official GDG logo where available and appropriate.
+- Do not misrepresent a newly designed application icon as an officially approved GDG or Google logo.
+- Do not use fabricated logos or unrelated stock graphics.
+
+If a new app icon is created, keep it separate from the official organization logo.
+
+### 2.3 Icons
+
+Use a consistent, modern icon library that is already installed or appropriate for the existing framework.
+
+Add suitable icons for:
+- Home.
+- Event information.
+- Program and activities.
+- Community.
+- Registration.
+- Official links.
+- FAQs.
+- Sharing.
+- Educational features.
+- Settings and language.
+
+Rules:
+- Use clean, consistent icons.
+- Do not add unnecessary decorative descriptions or subtitles.
+- Do not create invented theme labels such as “Dark — Desert Night.”
+- Do not use emojis as substitutes for professional interface icons.
+- Keep icon sizes, stroke styles, spacing, and alignment consistent.
+- Ensure icon-only controls have accessible names.
+- Every interactive icon must perform a real, clearly defined action.
+
+### 2.4 Subtle live animations
+
+Make the application feel alive through lightweight, tasteful animations.
+
+Examples:
+- Smooth transitions between pages and sections.
+- Gentle fade-in effects when content appears.
+- Subtle hover and press feedback.
+- Lightweight animated background accents.
+- Small transitions when countdown values change.
+- Smooth opening and closing of menus and expandable FAQ items.
+- Loading indicators when operations actually take time.
+
+Avoid:
+- Heavy continuous 3D animations.
+- Excessive particles.
+- Flashing effects.
+- Distracting backgrounds.
+- Animations that reduce readability or accessibility.
+- Unnecessary battery and CPU consumption.
+
+Respect the operating system's reduced-motion preference wherever supported.
+
+---
+
+## 3. Application Structure
+
+Organize the application into these main sections:
+
+1. Home.
+2. About DevFest.
+3. Event Program and Activities.
+4. About GDG Ghardaïa.
+5. Registration and Participation.
+6. Official Links and Community.
+7. Frequently Asked Questions.
+8. Share the Event.
+9. DevFest AI Lab.
+10. Offline Information.
+11. Post-Event Resources.
+12. Settings and Language.
+
+Use a clear navigation system that adapts to different screen sizes.
+
+Keep the home page focused on the most important information. Avoid excessive cards, repetitive content, and unnecessary menus.
+
+---
+
+## 4. Home Page
+
+Create an engaging home page containing:
+
+- GDG Ghardaïa branding.
+- DevFest Ghardaïa 2026 title.
+- A concise introduction.
+- The accurate countdown described in Section 5.
+- A registration button only when a verified event registration URL exists.
+- A button to explore the event program.
+- Shortcuts to official websites and social media.
+- Confirmed event announcements.
+- Subtle animations.
+- Responsive layouts.
+
+Do not invent announcements or display unverified details as confirmed facts.
+
+Use an elegant layout with a strong visual hierarchy and clear calls to action.
+
+---
+
+## 5. Accurate Countdown and Event Start Behavior — Critical Requirement
+
+The countdown is a core feature. It must calculate the actual remaining time correctly, update automatically, and transition to the correct event status.
+
+**Never use a hardcoded number of remaining days. Never fabricate a countdown. Never claim the countdown is accurate without testing its calculations.**
+
+### 5.1 Intended event date
+
+The currently intended event start date is:
+
+**November 25, 2026.**
+
+Treat this as a provisional date until the organizers confirm it through a reliable official source.
+
+The exact start time must also be confirmed. Do not invent a start time.
+
+If the event takes place in Ghardaïa, Algeria, use the explicit IANA time zone `Africa/Algiers`, provided it is appropriate for the confirmed event location.
+
+Before activating the countdown:
+1. Inspect the current project configuration and existing event data.
+2. Check the official event information available to the project.
+3. Compare conflicting dates if different official sources show different dates or ranges.
+4. Record unresolved discrepancies instead of silently choosing a date.
+5. Keep the countdown inactive until the necessary event information is confirmed.
+
+If the date or required time information is not confirmed, display a translated message such as:
+
+“Event date and start time will be announced.”
+
+Do not display a misleading numerical countdown merely to make the interface look complete.
+
+### 5.2 Single source of truth
+
+Store the event details in one maintainable configuration source, following the existing project architecture.
+
+Use a structure conceptually equivalent to:
+
+- `eventStartDateTime`: confirmed event start date and time.
+- `eventTimeZone`: confirmed event time zone.
+- `eventDateConfirmed`: true only after the date has been verified.
+- `eventStartTimeConfirmed`: true only after the start time has been verified.
+- `eventEndDateTime`: confirmed event end date and time, when available.
+- `eventDateSource`: source used to verify the date.
+- `lastVerifiedAt`: last verification timestamp, if it can be reliably maintained.
+
+These are conceptual fields; adapt them to the existing code rather than creating duplicate configuration systems.
+
+Do not set confirmation flags to true merely because a value exists in the source code.
+
+### 5.3 Countdown calculation
+
+Calculate the remaining duration using the actual current timestamp and the confirmed event start timestamp:
+
+`remainingMilliseconds = eventStartTimestamp - currentTimestamp`
+
+Convert the result into days, hours, minutes, and seconds using correct arithmetic.
+
+Requirements:
+- One day equals 24 hours for elapsed-duration calculations.
+- One hour equals 60 minutes.
+- One minute equals 60 seconds.
+- One second equals 1,000 milliseconds.
+- Ensure days, hours, minutes, and seconds do not overlap or count the same time twice.
+- Correctly interpret the configured date and time in the event's confirmed time zone.
+- Do not assume the device and event use the same time zone.
+- Handle time-zone differences and daylight-saving changes where applicable.
+- Use reliable date/time handling supported by the project's technology stack.
+- Avoid ambiguous date formats such as `11/12/2026`.
+- Never add or subtract arbitrary days to make the display look correct.
+- Never store the remaining-day count as a fixed value.
+- Never display negative countdown values, invalid dates, `NaN`, or impossible time units.
+
+### 5.4 Countdown update behavior
+
+When the event date and start time are confirmed:
+
+- Calculate the countdown from the actual current time when the application opens.
+- Update the visible countdown every second while the event is upcoming.
+- Recalculate against the current timestamp rather than merely decrementing a counter.
+- Correctly recover after refreshing the page, reopening the app, or returning from the background.
+- Avoid creating duplicate timers.
+- Clean up timers when components are removed or the relevant page is unmounted.
+- Keep the animation lightweight and the displayed values readable.
+- Do not allow background execution limitations to cause a permanently incorrect countdown.
+
+### 5.5 Expected countdown examples
+
+For the provisional date of November 25, 2026, under the same local-calendar reference:
+
+- October 27, 2026: 29 calendar days remain until November 25.
+- November 1, 2026: 24 calendar days remain.
+- November 15, 2026: 10 calendar days remain.
+- November 24, 2026: 1 calendar day remains.
+- On November 25, before the confirmed start time: show the actual remaining hours, minutes, and seconds.
+- At the confirmed start time: transition to “The event is happening now.”
+
+These are calendar-date examples, not substitutes for precise timestamp calculations.
+
+For the live countdown, always calculate the exact remaining duration from the current timestamp to the confirmed event start timestamp.
+
+### 5.6 Event status transitions
+
+Implement the following states:
+
+**State A — Unconfirmed**
+
+If the event date or exact start time is not confirmed, show an appropriate message and do not activate the live countdown.
+
+**State B — Upcoming**
+
+Show the calculated remaining days, hours, minutes, and seconds. Update every second.
+
+**State C — Starting**
+
+At the confirmed start timestamp, stop showing the upcoming countdown and transition to the ongoing state.
+
+**State D — Ongoing**
+
+Show “The event is happening now” until the confirmed event end time.
+
+**State E — Completed**
+
+After the confirmed end time has passed, display “Event completed” and enable the post-event section when content is available.
+
+For a multi-day event, do not mark it completed merely because its first session has started.
+
+If the end time is unknown, do not invent one. Use a documented status rule based on verified information, or keep the completed state dependent on confirmation.
+
+### 5.7 Mandatory countdown tests
+
+Run deterministic tests using fixed reference timestamps and independently calculated expected values.
+
+Include these cases:
+
+1. Exactly 29 calendar days before the event date.
+2. Exactly 25 days before the event start timestamp.
+3. Exactly 24 hours remaining.
+4. Less than 24 hours remaining.
+5. One hour remaining.
+6. One minute remaining.
+7. A few seconds remaining.
+8. The exact event start timestamp.
+9. A timestamp after the event has started.
+10. A completed event with a confirmed end time.
+11. An unconfirmed event date.
+12. A missing event start time.
+13. A device time zone different from the event time zone.
+14. Refreshing or reopening the application.
+15. Returning to the application after the device has been idle.
+
+For each applicable test, record:
+- Fixed current timestamp.
+- Expected remaining duration or status.
+- Actual calculated duration or status.
+- PASS or FAIL.
+
+Use a consistent rounding and display convention. Independently verify that the displayed values match the expected results.
+
+If the event is configured to start at 09:00 on November 25, 2026, for example, the countdown must target that exact confirmed timestamp in `Africa/Algiers`; do not use 09:00 unless the organizers actually confirm it.
+
+### 5.8 Countdown reporting
+
+In the final report, specify:
+- The event date configured in the application.
+- The confirmed start time, if available.
+- The time zone used.
+- The source used to verify the event information.
+- Whether organizer confirmation is still required.
+- The countdown test cases actually executed.
+- Expected and actual results.
+
+Never mark an unexecuted test as PASS.
+
+---
+
+## 6. About DevFest
+
+Create a concise informational page explaining that DevFest is a technology-focused event associated with the Google Developer Groups community.
+
+Explain its educational and community purpose, including opportunities to learn about technology, attend talks and workshops, and connect with other participants.
+
+Use accurate wording. Do not invent speakers, sponsors, partnerships, benefits, or program details.
+
+---
+
+## 7. Event Program and Activities
+
+Create a dedicated page presenting the confirmed program in chronological order.
+
+Use an accessible timeline, schedule, or well-organized activity cards.
+
+Possible categories:
+- Technical talks.
+- Workshops.
+- Question-and-answer sessions.
+- Educational activities.
+- Networking.
+- Breaks.
+- Other confirmed activities.
+
+Use actual program information available in the project or reliable official sources.
+
+Do not fabricate speaker names, session titles, times, workshop details, or activity descriptions.
+
+If a detail remains unconfirmed, mark it as pending confirmation or omit it until reliable information is available.
+
+---
+
+## 8. About GDG Ghardaïa
+
+Create a dedicated community page containing:
+
+- A short introduction to GDG Ghardaïa.
+- The community's purpose.
+- Confirmed activities and interests.
+- Official websites and social media.
+- A clear button to join the community.
+
+Clearly distinguish joining the GDG Ghardaïa community from registering for DevFest. These are separate actions and must never be presented as interchangeable.
+
+---
+
+## 9. Official Websites and Community Links
+
+Create a dedicated section titled “Official Links & Community.”
+
+Use clear names, consistent icons, and a polished layout.
+
+### 9.1 Websites
+
+- Website candidate 1: https://www.gdgghardaia.com/
+- Website candidate 2: https://gdgghardaia.vercel.app/
+
+Keep both websites in the configuration until the organizers confirm which should be the primary website.
+
+Inspect both before replacing or deleting either link.
+
+### 9.2 Social media
+
+- Facebook: https://fb.com/GDG.Ghardaia
+- Instagram: https://www.instagram.com/gdg.ghardaia
+- LinkedIn: https://dz.linkedin.com/company/gdgghardaia
+
+### 9.3 Community and event
+
+- DevFest Ghardaïa 2026 on GDG Community: https://gdg.community.dev/events/details/google-gdg-ghardaia-presents-devfest-ghardaia-2026/
+- Community Discord: https://discord.com/invite/GMueprF5dq
+
+### 9.4 Join the GDG Ghardaïa community
+
+- Community membership form: https://docs.google.com/forms/d/e/1FAIpQLSddyGm44owNr1LO_8J5xifPQd5GpiaCOjrudpfdUO6PwtxG6A/viewform
+
+This is a community membership form, not a confirmed DevFest registration form.
+
+### 9.5 Link requirements
+
+- Do not label links as verified unless they have actually been checked.
+- Test external destinations where the environment permits.
+- Keep the membership form separate from event registration.
+- Do not describe the GDG Community page as a registration form unless that function has been verified.
+- Do not invent missing URLs.
+- Preserve useful existing links.
+- Store the URLs in a centralized, maintainable configuration.
+- Ensure each link opens its intended destination.
+- Use safe external-link handling appropriate to the existing framework.
+- Provide accessible labels for icon-only links.
+- Do not silently remove either website or replace an existing link without inspecting it.
+
+---
+
+## 10. Registration and Participation
+
+Create a dedicated DevFest registration section.
+
+- Display a registration button only when a confirmed event registration URL is available.
+- If no confirmed registration URL exists, show a message explaining that registration details will be announced.
+- The official GDG Community event page may be linked as an event information page without claiming it is a registration form.
+- Do not create unnecessary internal registration or account systems.
+- Do not collect personal information without a clear need and appropriate safeguards.
+- Do not display “Registration successful” unless a real integration confirms successful registration.
+
+---
+
+## 11. Frequently Asked Questions
+
+Create an accessible expandable FAQ section with questions such as:
+
+- What is DevFest?
+- What is GDG Ghardaïa?
+- When does the event start?
+- How can I register?
+- Where can I find the event program?
+- Are workshops available?
+- How can I join the community?
+- Where are the official links?
+- Can I access basic information offline?
+- Where will post-event resources be published?
+
+Use verified answers only.
+
+If information is unavailable, state that it has not been announced or provide the appropriate official information link.
+
+The event date displayed in the FAQ must come from the same event configuration used by the countdown. Never maintain conflicting dates in different sections.
+
+---
+
+## 12. Sharing and Calendar Integration
+
+Add a share feature for the application or official event page.
+
+- Use the native sharing mechanism when supported.
+- Provide a copy-link fallback.
+- Add an “Add to Calendar” option only after the event date, start time, and necessary details are confirmed.
+- Do not generate calendar entries using estimated or unconfirmed dates.
+- Do not report success unless the action has actually completed.
+- Use the same source of truth for the calendar event and countdown.
+
+---
+
+## 13. DevFest AI Lab
+
+Create an educational section named “DevFest AI Lab” that matches the application's visual identity.
+
+### 13.1 Technical quiz
+
+Include:
+- Short technology and programming questions.
+- Multiple-choice answers.
+- Score calculation.
+- Brief explanations.
+- An option to restart.
+
+### 13.2 Coding challenges
+
+Include:
+- Beginner-friendly programming challenges.
+- Difficulty levels.
+- Problem descriptions.
+- Input and expected output examples.
+- Optional hints and solutions.
+
+Do not claim to execute code or automatically evaluate arbitrary code unless a real, secure execution environment has been implemented and tested.
+
+### 13.3 Project idea generator
+
+Allow users to select a topic and difficulty level, then show useful project ideas with:
+- A concise description.
+- Suggested starting steps.
+- Relevant tools and technologies.
+- A manageable beginner-friendly scope.
+
+Predefined local ideas are sufficient for the initial version.
+
+### 13.4 AI chat interface
+
+Create a polished interface scaffold for a future AI assistant.
+
+- Do not pretend a real AI service is connected when it is not.
+- Do not fabricate responses and present them as results from a live AI service.
+- Never expose API keys or secrets in frontend code or public repositories.
+- Defer real AI integration to a separate phase that includes provider selection, secure credential handling, usage limits, cost controls, privacy review, and security testing.
+
+Do not add unnecessary authentication, databases, or paid services.
+
+---
+
+## 14. Offline Information
+
+Where supported by the current architecture, make basic information available after the application has loaded:
+
+- About DevFest.
+- About GDG Ghardaïa.
+- Available program information.
+- FAQs.
+- Local quizzes and coding challenges.
+- Saved official links.
+
+If the existing project supports a PWA or an appropriate local caching mechanism, implement it without unnecessarily changing the architecture.
+
+- Clearly explain that external links and connected services may require internet access.
+- Avoid storing unnecessary personal information.
+- Handle cache updates and outdated content appropriately.
+- Do not claim offline functionality has been tested unless it has been tested.
+
+---
+
+## 15. Post-Event Section
+
+Prepare a section that becomes useful after the event.
+
+When genuine materials are available, include:
+- An event summary.
+- Official photographs.
+- Recordings and learning resources.
+- Presentation links.
+- Project resources.
+- Acknowledgments.
+- An official feedback form.
+
+Do not fabricate photographs, speakers, testimonials, certificates, results, or resource links.
+
+If materials are not yet available, show a concise message explaining that they will be published when ready.
+
+---
+
+## 16. Multilingual Support
+
+Support:
+- Arabic.
+- French.
+- English.
+
+Requirements:
+- Provide an in-app language selector.
+- Use RTL for Arabic.
+- Use LTR for French and English.
+- Translate navigation, buttons, FAQs, notifications, loading states, error messages, event states, and countdown labels.
+- Keep translations organized in an appropriate localization structure.
+- Preserve the selected language where appropriate.
+- Avoid unintended language mixing.
+- Verify that layout, typography, icons, and spacing remain correct in each language.
+- Ensure the countdown's day, hour, minute, and second labels are translated correctly.
+
+---
+
+## 17. Performance, Accessibility, and Responsiveness
+
+- Support mobile, tablet, and desktop screens.
+- Prioritize performance on mid-range devices.
+- Optimize images and avoid unnecessary assets.
+- Avoid heavy dependencies without a clear reason.
+- Use lazy loading where appropriate.
+- Maintain readable typography and sufficient contrast.
+- Provide clear loading, error, and success states.
+- Support keyboard navigation.
+- Use semantic elements and accessible names.
+- Do not rely on color alone to communicate important states.
+- Keep live animations lightweight.
+- Ensure countdown updates do not cause excessive rendering or performance issues.
+
+---
+
+## 18. Security, Privacy, and Cost Control
+
+- Inspect existing dependencies and settings before modifying them.
+- Never expose secrets, API keys, or credentials.
+- Do not request unnecessary permissions.
+- Do not add Firebase, a database, authentication, or paid services without a clear requirement.
+- Do not send personal information to external services unnecessarily.
+- Document security, privacy, and cost implications before adding external integrations.
+- Do not perform destructive or irreversible operations without explicit approval.
+- Preserve existing configuration needed to run the project.
+
+---
+
+## 19. Implementation Workflow
+
+Work in the following stages inside the existing project:
+
+1. **Audit:** Inspect the current source code, structure, dependencies, assets, settings, and features.
+2. **Plan:** Identify what to preserve, refactor, add, or safely remove.
+3. **Structure:** Organize pages, reusable components, centralized configuration, links, and translations.
+4. **Design:** Apply Google's color palette, refine the app logo treatment, and implement subtle animations.
+5. **Core features:** Implement the home page, verified event information, countdown, program, community page, official links, registration, FAQs, and sharing.
+6. **Educational features:** Implement the quiz, coding challenges, project idea generator, and AI chat UI scaffold.
+7. **Offline support:** Implement suitable local caching where supported.
+8. **Optimization:** Review performance, accessibility, responsiveness, and security.
+9. **Testing:** Run supported tests and record actual results.
+10. **Reporting:** Summarize changes, verified behavior, failures, and outstanding work.
+
+Do not stop at a static visual mockup when functional behavior is required.
+
+Do not pretend that an integration is complete merely because its interface exists.
+
+---
+
+## 20. Mandatory Testing Checklist
+
+Use these test statuses:
+
+- **PASS:** The test was executed and passed.
+- **FAIL:** The test was executed and failed.
+- **BLOCKED:** The test could not be completed because of a blocker.
+- **NOT TESTED:** The test was not executed.
+- **NOT APPLICABLE:** The test does not apply.
+
+Test where supported:
+
+- Application startup and build.
+- Main page navigation.
+- Interactive buttons and controls.
+- External URLs.
+- Separation of community membership and event registration.
+- Countdown arithmetic using fixed timestamps.
+- Countdown behavior for upcoming, ongoing, completed, and unconfirmed states.
+- Countdown behavior across different device and event time zones.
+- Missing or unconfirmed start times.
+- Countdown refresh and recovery after inactivity.
+- Multilingual content and text direction.
+- Mobile and desktop layouts.
+- Animation performance and reduced-motion behavior.
+- Keyboard accessibility.
+- Offline behavior.
+- Loading and error states.
+- Absence of exposed secrets.
+- Console and build errors where inspection is available.
+
+For countdown tests, record the expected result and actual result for each executed test.
+
+Do not mark a test PASS based only on visual appearance, assumptions, or generated code. Do not report tests that were not executed as successful.
+
+Do not claim deployment, database creation, or external service integration unless it actually occurred.
+
+---
+
+## 21. Required Final Report
+
+After implementation, provide:
+
+1. A summary of the original project state.
+2. Files and components modified, added, or removed, including the reason for removals.
+3. Features that actually work.
+4. External links tested and their observed results.
+5. The configured event date and start time.
+6. The event time zone and date verification source.
+7. Whether organizer confirmation is still required.
+8. Countdown test cases with expected and actual results.
+9. All other test statuses.
+10. Features that remain UI-only or require future integration.
+11. Missing information that organizers must confirm.
+12. Manual steps required before deployment.
+13. Any potential external service requirements or costs.
+
+## Final Instruction
+
+Start by auditing the existing project, then implement the changes inside that project while preserving useful files and functionality.
+
+The final application should be elegant, modern, responsive, lightweight, and visually consistent with Google's colors. It must have a refined logo treatment, consistent icons, subtle live animations, accurate event information, organized community links, multilingual support, and useful educational features.
+
+**The countdown must use the actual current timestamp and a verified event start timestamp. November 25, 2026 is provisional until confirmed by the organizers. Never hardcode the remaining days. Never invent a start time. Independently test the countdown arithmetic, update it automatically, and transition to the ongoing event state at the exact confirmed start time. If the necessary event information is unconfirmed, display a clear announcement instead of a misleading countdown.**
+
+Preserve the current project, implement the requested functionality, and report only what has actually been completed and verified.
